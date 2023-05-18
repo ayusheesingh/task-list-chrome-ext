@@ -14,5 +14,6 @@
     "default_title": "Task List",
     "default_popup": "popup/popup.html"
   },
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "options_page": "options/options.html"
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Work Sans"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="options.css" />
+    <title>Task List Extension Options</title>
+  </head>
+  <body>
+    <h1>Task List Options</h1>
+    <label>
+      <h2>Number of uncompleted tasks to display (1-100):</h2>
+      <input
+        id="num-todo-tasks-to-display"
+        type="number"
+        min="1"
+        max="100"
+        value="5"
+      /> </label
+    ><br /><br />
+
+    <label>
+      <h2>Number of completed tasks to display (1-100):</h2>
+      <input
+        id="num-completed-tasks-to-display"
+        type="number"
+        min="1"
+        max="100"
+        value="5"
+      /> </label
+    ><br /><br />
+
+    <!-- <label>
+      <h2>Show completed tasks list</h2>
+      <input
+        id="completed-flag"
+        type="checkbox"
+        name="completed-flag"
+        value="true"
+      /> </label
+    ><br /><br /> -->
+
+    <div id="btn-container">
+      <button id="save-btn" title="Save">Save Options</button>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>

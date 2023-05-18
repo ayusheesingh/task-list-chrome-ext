@@ -4,18 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Work Sans"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="popup.css" />
     <title>Task List</title>
   </head>
   <body>
-    <div class="header">
-      <img src="../icon.png" />
+    <div id="progress-bar-container">
+      <p id="progress-bar-text"></p>
+      <div id="progress-bar"></div>
     </div>
-    <h1>ToDo Tasks</h1>
-    <button id="add-task-btn">Add Task</button>
+    <h1 id="todotasks">ToDo</h1>
     <div id="task-container"></div>
-    <h1 class="completedtasks">Completed Tasks</h1>
-    <ul id="completed-task-list"></ul>
+    <div id="btn-container">
+      <button id="add-task-btn" title="Add a new task">Add Task</button>
+    </div>
+    <h1 id="completedtasks">Done</h1>
+    <div id="completed-task-container"></div>
+    <div id="btn-container-2">
+      <button id="clear-btn" title="Clear">Clear All Tasks</button>
+    </div>
+    <br />
   </body>
   <script src="popup.js"></script>
 </html>
