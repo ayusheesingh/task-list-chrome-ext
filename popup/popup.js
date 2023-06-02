@@ -34,9 +34,16 @@ chrome.storage.sync.get(["completedTasks"], (res) => {
   renderCompletedTasks();
 });
 
+chrome.storage.sync.get(["width"], (res) => {
+  width = res.width ? res.width : [];
+  updateProgress();
+});
+
 function saveTasks() {
   chrome.storage.sync.set({
     tasks,
+    completedTasks,
+    width,
   });
   updateBadge();
 }
@@ -78,18 +85,27 @@ function renderTask(taskNum, taskList, taskContainerName) {
     saveTasks();
   });
 
-  const deleteBtn = document.createElement("input");
-  deleteBtn.type = "button";
-  deleteBtn.value = "x";
-  deleteBtn.className = "task-delete";
-  deleteBtn.title = "Completed task";
-  deleteBtn.addEventListener("click", () => {
+  const completedBtn = document.createElement("input");
+  completedBtn.type = "button";
+  completedBtn.value = "✔";
+  completedBtn.className = "task-delete";
+  completedBtn.title = "Completed task";
+  completedBtn.addEventListener("click", () => {
     deleteTask(taskNum);
   });
 
+  // const editBtn = document.createElement("input");
+  // editBtn.type = "button";
+  // editBtn.value = "✎";
+  // editBtn.className = "task-edit";
+  // editBtn.title = "Edit task";
+  // editBtn.addEventListener("click", () => {
+  //   editTask(taskNum);
+  // });
+
   const undoBtn = document.createElement("input");
   undoBtn.type = "button";
-  undoBtn.value = "↻";
+  undoBtn.value = "↩";
   undoBtn.className = "task-undo";
   undoBtn.title = "Undo";
   undoBtn.addEventListener("click", () => {
@@ -99,10 +115,11 @@ function renderTask(taskNum, taskList, taskContainerName) {
   taskRow.appendChild(text);
 
   if (taskList == tasks) {
-    taskRow.appendChild(deleteBtn);
+    taskRow.appendChild(completedBtn);
   } else {
     taskRow.appendChild(undoBtn);
   }
+  // taskRow.appendChild(editBtn);
 
   const taskContainer = document.getElementById(taskContainerName);
   taskContainer.appendChild(taskRow);
@@ -167,3 +184,28 @@ function updateProgress() {
   progressBar.style.width = width + "%";
   document.getElementById("progress-bar-text").innerHTML = `${width}%`;
 }
+
+const tabs = document.querySelector(".wrapper");
+const tabButton = document.querySelectorAll(".tab-button");
+const contents = document.querySelectorAll(".content");
+
+console.log("tabs:", tabs);
+console.log("tabButton:", tabButton);
+console.log("contents:", contents);
+
+tabs.onclick = (e) => {
+  const id = e.target.dataset.id;
+  console.log("ID:", id);
+  if (id) {
+    tabButton.forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    e.target.classList.add("active");
+
+    contents.forEach((content) => {
+      content.classList.remove("active");
+    });
+    const element = document.getElementById(id);
+    element.classList.add("active");
+  }
+};
